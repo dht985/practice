@@ -7,9 +7,43 @@
   <style>
     html, body { margin: 0; height: 100%; overflow: hidden; background: #05060f; }
     canvas { display: block; }
+
+    /* 左上控制面板 */
+    #hud {
+      position: fixed; left: 14px; top: 14px; z-index: 10;
+      padding: 12px 14px; border-radius: 12px;
+      background: rgba(12, 16, 32, 0.62);
+      border: 1px solid rgba(140, 160, 220, 0.25);
+      color: #d7def5; font-family: "Microsoft YaHei", sans-serif;
+      user-select: none; backdrop-filter: blur(4px);
+    }
+    #hud .title { font-size: 15px; font-weight: bold; margin-bottom: 8px; letter-spacing: 1px; }
+    #hud .row { display: flex; gap: 6px; flex-wrap: wrap; }
+    #hud button {
+      border: 1px solid rgba(140, 160, 220, 0.35);
+      background: rgba(40, 48, 80, 0.7);
+      color: #d7def5; border-radius: 8px;
+      padding: 5px 10px; font-size: 13px; cursor: pointer;
+      transition: background .15s;
+    }
+    #hud button:hover { background: rgba(70, 84, 130, 0.9); }
+    #hud button.active { background: #e1b99f; color: #2a241d; border-color: #e1b99f; }
+    #hud .tip { margin-top: 8px; font-size: 12px; opacity: .65; }
   </style>
 </head>
 <body>
+  <div id="hud">
+    <div class="title">🪐 星球宇宙 · Three.js</div>
+    <div class="row">
+      <button id="btn-pause">⏸ 暂停</button>
+      <button class="btn-speed" data-speed="0.5">0.5×</button>
+      <button class="btn-speed active" data-speed="1">1×</button>
+      <button class="btn-speed" data-speed="2">2×</button>
+      <button class="btn-speed" data-speed="4">4×</button>
+    </div>
+    <div class="tip">拖拽环绕 · 滚轮缩放 · 按钮调速</div>
+  </div>
+
   <script src="libs/three.min.js"></script>
   <script src="libs/OrbitControls.js"></script>
   <script src="universe.js"></script>
